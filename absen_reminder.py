@@ -4,6 +4,7 @@ import Timer as _timer
 import notif_utils
 import ravioli_dummy
 import win32gui, win32con
+import os
 
 
 def get_time_now():
@@ -20,7 +21,7 @@ def get_second():
     return get_time_now().second
 
 def waktu_absen():
-    return 6 <= get_hour() <= 9
+    return 6 <= get_hour() < 9
 
 
 async def remind_me():
@@ -45,17 +46,19 @@ def _main():
         looper.run_until_complete(looper.shutdown_asyncgens())
         looper.close()
 
-def main():
+def main(program_name = "ravioly.exe"):
     """
     if you wanna call it from another module, use this main function
     """
+    program = ".\{}".format(program_name)
     hide = win32gui.GetForegroundWindow()
     win32gui.ShowWindow(hide , win32con.SW_HIDE)
 
     _main()
 
     win32gui.ShowWindow(hide , win32con.SW_SHOW) #reopening the cli
-    ravioli_dummy.main() #change it to your module
+    #ravioli_dummy.main() #change it to your module
+    os.popen(program)
 
 if __name__ == '__main__':
     
