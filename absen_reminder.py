@@ -22,13 +22,14 @@ def get_second():
 def waktu_absen():
     return 6 <= get_hour() <= 9
 
+
 async def remind_me():
     timer = _timer.Timer(2, _timer.timeout_callback)  # set timer for two seconds
     while True:
         if waktu_absen():#tinggal ngganti untuk pengaturan waktunya
             await asyncio.sleep(1)  # wait to see timer works
             notif_utils.show_toaster("ABSEN ABSEN") #notification
-            exit(0)
+            break
         else:
             #timer.cancel()
             await asyncio.sleep(1)  # and wait to see it won't call callback
