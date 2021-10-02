@@ -46,7 +46,7 @@ def _main():
         looper.run_until_complete(looper.shutdown_asyncgens())
         looper.close()
 
-def main(program_name = "ravioly.exe"):
+def main(program_name = "ravioli.exe"):
     """
     if you wanna call it from another module, use this main function
     """
